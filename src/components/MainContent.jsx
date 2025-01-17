@@ -30,6 +30,8 @@ const MainContent = () => {
         <Form
           className='d-flex justify-content-center w-75 mx-auto gap-1'
           onSubmit={(e) => formSubmit(e)}
+          bg='dark'
+          data-bs-theme='dark'
         >
           <Form.Group className='w-75 mb-3'>
             <Form.Control
