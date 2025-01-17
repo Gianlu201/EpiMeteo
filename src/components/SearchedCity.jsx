@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Alert, Col, Row, Spinner } from 'react-bootstrap';
-import { ArrowDown, Eye, Moisture, Wind } from 'react-bootstrap-icons';
+import { ArrowDown, Eye, Moisture, Sunrise, Wind } from 'react-bootstrap-icons';
 import DaysWeather from './DaysWeather';
 
 const SearchedCity = (props) => {
@@ -11,6 +11,29 @@ const SearchedCity = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const today = new Date();
+
+  const getTimeFormat = (time, timezone) => {
+    const myTime = time / timezone / 1000;
+    const hours = Math.floor(myTime / 60);
+    const minutes = Math.floor(myTime - hours * 60);
+
+    let hoursStr;
+    let minutesStr;
+
+    if (`${hours}`.length === 1) {
+      hoursStr = `0${hours}`;
+    } else {
+      hoursStr = `${hours}`;
+    }
+
+    if (`${minutes}`.length === 1) {
+      minutesStr = `0${minutes}`;
+    } else {
+      minutesStr = `${minutes}`;
+    }
+
+    return `${hoursStr}:${minutesStr}`;
+  };
 
   const getMyCity = async (city, nation) => {
     setIsLoaded(false);
@@ -65,7 +88,11 @@ const SearchedCity = (props) => {
       {isLoaded ? (
         <>
           <Row>
-            <Col md={3} className='border-end border-2 border-white px-4'>
+            <Col
+              md={4}
+              xl={3}
+              className='border-end border-2 border-white px-4'
+            >
               <img
                 src={`https://openweathermap.org/img/wn/${myCity.weather[0].icon}@2x.png`}
               />
@@ -83,7 +110,11 @@ const SearchedCity = (props) => {
               }/${today.getFullYear()} | ${today.getHours()}:${today.getMinutes()}`}</p>
             </Col>
 
-            <Col md={3} className='border-end border-2 border-white px-4'>
+            <Col
+              md={4}
+              xl={3}
+              className='border-end border-2 border-white px-4'
+            >
               <Row>
                 <Col sm={9}>
                   <span className='d-block display-1 fw-semibold mb-3'>
@@ -104,7 +135,7 @@ const SearchedCity = (props) => {
               </Row>
             </Col>
 
-            <Col md={3} className='border-end border-2 border-white px-4'>
+            <Col md={4} xl={3} className='px-4'>
               <p>
                 <Moisture className='me-1' /> Umidità: {myCity.main.humidity}%
               </p>
@@ -119,6 +150,10 @@ const SearchedCity = (props) => {
               <p>
                 <Eye className='me-1' /> Visibilità: {myCity.visibility / 1000}{' '}
                 km
+              </p>
+              <p>
+                <Sunrise className='me-1' /> Alba:{' '}
+                {getTimeFormat(myCity.sys.sunrise, myCity.timezone)}
               </p>
             </Col>
           </Row>

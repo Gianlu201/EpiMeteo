@@ -19,8 +19,14 @@ const MainContent = () => {
   };
 
   return (
-    <Container id='mainSection' as={'section'} style={{ minHeight: '90vh' }}>
-      <div className='pt-2'>
+    <Container
+      id='mainSection'
+      as={'section'}
+      style={{ minHeight: '90vh' }}
+      fluid
+      className='pb-1'
+    >
+      <div className='container pt-2'>
         <Form
           className='d-flex justify-content-center w-75 mx-auto gap-1'
           onSubmit={(e) => formSubmit(e)}
@@ -50,7 +56,7 @@ const MainContent = () => {
         </Form>
       </div>
 
-      <div id='results' className='p-4 pb-1'>
+      <div id='results' className='container p-4 pb-1'>
         {srcCity.length === 0 ? (
           <RacommentedCities setSrcCity={setSrcCity} />
         ) : (
