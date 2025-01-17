@@ -103,7 +103,7 @@ const SearchedCity = (props) => {
                 {myCity.weather[0].description}
               </span>
 
-              <h2>{myCity.name}</h2>
+              <h1>{myCity.name}</h1>
               <span>Previsione:</span>
               <p>{`${today.getDate()}/${
                 today.getMonth() + 1
