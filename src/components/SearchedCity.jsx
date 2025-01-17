@@ -116,7 +116,7 @@ const SearchedCity = (props) => {
               className='border-end border-2 border-white px-4'
             >
               <Row>
-                <Col sm={9}>
+                <Col xs={9}>
                   <span className='d-block display-1 fw-semibold mb-3'>
                     {Math.round(myCity.main.temp)}°
                   </span>
@@ -124,11 +124,11 @@ const SearchedCity = (props) => {
                     Percepiti: <b>{Math.round(myCity.main.feels_like)}°</b>
                   </span>
                 </Col>
-                <Col sm={3} className='fs-2'>
-                  <span className='d-block border-bottom border-2 border-white text-center'>
+                <Col xs={3} className='d-flex flex-column align-items-end fs-2'>
+                  <span className='d-inline-block border-bottom border-2 border-white text-center'>
                     {Math.round(myCity.main.temp_max)}°
                   </span>
-                  <span className='d-block text-center'>
+                  <span className='d-inline-block text-center'>
                     {Math.round(myCity.main.temp_min)}°
                   </span>
                 </Col>
