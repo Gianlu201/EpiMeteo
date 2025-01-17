@@ -8,11 +8,17 @@ const SearchedCity = (props) => {
   const [myCity, setMyCity] = useState({});
   const [daysWeather, setDaysWeather] = useState({});
   const [isError, setIsError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const today = new Date();
 
   const getMyCity = async (city, nation) => {
+    setIsLoaded(false);
+    setMyCity({});
+    setDaysWeather({});
+    setIsError(false);
+    setErrorMsg('');
+
     try {
       const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${nation}&appid=5fb43d9317a963bf83907952a8a8a3f3&units=metric&lang=it`;
       const response = await fetch(URL);
@@ -52,7 +58,7 @@ const SearchedCity = (props) => {
 
   useEffect(() => {
     getMyCity(props.city, props.nation);
-  }, []);
+  }, [props.city]);
 
   return (
     <div>
@@ -131,7 +137,7 @@ const SearchedCity = (props) => {
       ) : (
         <Alert variant='danger'>
           {errorMsg === 'not found'
-            ? 'Nessuna città trovata, torna alla home e riprova'
+            ? 'Nessuna città trovata, riprova'
             : 'ERROR, torna alla home e riprova'}
         </Alert>
       )}
