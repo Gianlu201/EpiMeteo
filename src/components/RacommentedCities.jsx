@@ -2,9 +2,84 @@ import SingleRacommentedCity from './SingleRacommentedCity';
 
 const RacommentedCities = (props) => {
   return (
-    <div className='d-flex justify-content-around'>
+    <div className='d-flex justify-content-around flex-wrap gap-2'>
       <SingleRacommentedCity
         city='Roma'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Milano'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Cosenza'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Milano'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Torino'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Firenze'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Napoli'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Pisa'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Bari'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Venezia'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Padova'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Trieste'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Novara'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Ferrara'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Crotone'
+        nation='IT'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Potenza'
         nation='IT'
         setSrcCity={props.setSrcCity}
       />
@@ -14,13 +89,18 @@ const RacommentedCities = (props) => {
         setSrcCity={props.setSrcCity}
       />
       <SingleRacommentedCity
-        city='Milano'
-        nation='IT'
+        city='Parigi'
+        nation='FR'
         setSrcCity={props.setSrcCity}
       />
       <SingleRacommentedCity
-        city='Paris'
-        nation='FR'
+        city='Copenaghen'
+        nation='DK'
+        setSrcCity={props.setSrcCity}
+      />
+      <SingleRacommentedCity
+        city='Vienna'
+        nation='AT'
         setSrcCity={props.setSrcCity}
       />
     </div>

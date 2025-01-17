@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Alert, Col, Row, Spinner } from 'react-bootstrap';
 import { ArrowDown, Eye, Moisture, Wind } from 'react-bootstrap-icons';
+import DaysWeather from './DaysWeather';
 
 const SearchedCity = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [myCity, setMyCity] = useState({});
+  const [daysWeather, setDaysWeather] = useState({});
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const today = new Date();
 
@@ -16,13 +20,33 @@ const SearchedCity = (props) => {
         const data = await response.json();
         console.log(data);
         setMyCity(data);
-        console.log(today);
-        setIsLoaded(true);
+        getDaysWeather(props.city, props.nation);
       } else {
-        throw new Error('Error API');
+        setErrorMsg('not found');
+        throw new Error('not found');
       }
     } catch (error) {
       console.log(error);
+      setIsError(true);
+    }
+  };
+
+  const getDaysWeather = async (city, nation) => {
+    try {
+      const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${nation}&appid=5fb43d9317a963bf83907952a8a8a3f3&units=metric&lang=it`;
+      const response = await fetch(URL);
+      if (response.ok) {
+        const data = await response.json();
+        // console.log(data.list);
+        setDaysWeather(data);
+        setIsLoaded(true);
+      } else {
+        setErrorMsg('not found');
+        throw new Error('not found');
+      }
+    } catch (error) {
+      console.log(error);
+      setIsError(true);
     }
   };
 
@@ -32,10 +56,10 @@ const SearchedCity = (props) => {
 
   return (
     <div>
-      {isLoaded && (
+      {isLoaded ? (
         <>
           <Row>
-            <Col md={3} className='border-end border-2 border-white'>
+            <Col md={3} className='border-end border-2 border-white px-4'>
               <img
                 src={`https://openweathermap.org/img/wn/${myCity.weather[0].icon}@2x.png`}
               />
@@ -52,7 +76,8 @@ const SearchedCity = (props) => {
                 today.getMonth() + 1
               }/${today.getFullYear()} | ${today.getHours()}:${today.getMinutes()}`}</p>
             </Col>
-            <Col md={3} className='border-end border-2 border-white'>
+
+            <Col md={3} className='border-end border-2 border-white px-4'>
               <Row>
                 <Col sm={9}>
                   <span className='d-block display-1 fw-semibold mb-3'>
@@ -72,7 +97,8 @@ const SearchedCity = (props) => {
                 </Col>
               </Row>
             </Col>
-            <Col md={3} className='border-end border-2 border-white'>
+
+            <Col md={3} className='border-end border-2 border-white px-4'>
               <p>
                 <Moisture className='me-1' /> Umidità: {myCity.main.humidity}%
               </p>
@@ -90,8 +116,24 @@ const SearchedCity = (props) => {
               </p>
             </Col>
           </Row>
-          <Row></Row>
+
+          <Row className='mt-5'>
+            <DaysWeather weatherPrev={daysWeather.list} />
+          </Row>
         </>
+      ) : !isError ? (
+        <div
+          className='d-flex justify-content-center pt-5'
+          style={{ height: '80vh' }}
+        >
+          <Spinner animation='border' variant='info' />
+        </div>
+      ) : (
+        <Alert variant='danger'>
+          {errorMsg === 'not found'
+            ? 'Nessuna città trovata, torna alla home e riprova'
+            : 'ERROR, torna alla home e riprova'}
+        </Alert>
       )}
     </div>
   );

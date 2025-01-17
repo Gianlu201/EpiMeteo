@@ -4,7 +4,11 @@ const SingleRacommentedCity = (props) => {
   };
 
   return (
-    <div className='d-inline-block' onClick={giveCityInfos}>
+    <div
+      className='d-inline-block px-5 border border-1 border-light rounded-4 mb-3 py-3'
+      onClick={giveCityInfos}
+      style={{ width: '20%', cursor: 'pointer' }}
+    >
       <div className='text-center'>
         <img
           src={`https://flagcdn.com/16x12/${props.nation.toLowerCase()}.png`}
@@ -14,8 +18,10 @@ const SingleRacommentedCity = (props) => {
           alt='Brasile'
         />
       </div>
-      <span className='h4 me-2'>{props.city}</span>
-      <span>{props.nation}</span>
+      <div className='text-center'>
+        <span className='h4 me-2'>{props.city}</span>
+        <span>{props.nation}</span>
+      </div>
     </div>
   );
 };
