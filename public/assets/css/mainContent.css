@@ -1,0 +1,12 @@
+#mainSection {
+  height: 90%;
+  background-image: url('../images/background2.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#results {
+  background-color: #192939c5;
+  color: #ffffff;
+}
