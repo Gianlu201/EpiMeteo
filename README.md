@@ -75,13 +75,3 @@ npm run dev
 - **One Call / Forecast ora-per-ora**: `https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=minutely,daily,alerts&units=metric&appid={API_KEY}`
 
 ---
-
-## Deployment
-- Build production:
-```bash
-npm run build
-npm run preview
-```
-- Puoi deployare su Vercel / Netlify / Surge. Ricorda di impostare la variabile d'ambiente `VITE_OPENWEATHER_API_KEY`.
-
----
